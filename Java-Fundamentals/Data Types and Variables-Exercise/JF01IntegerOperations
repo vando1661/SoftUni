@@ -1,0 +1,16 @@
+package dataTypesAndVariablesExercise;
+
+import java.util.Scanner;
+
+public class JF01IntegerOperations {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner (System.in);
+        int numOne = Integer.parseInt(scanner.nextLine());
+        int numTwo = Integer.parseInt(scanner.nextLine());
+        int numThree = Integer.parseInt(scanner.nextLine());
+        int numFor = Integer.parseInt(scanner.nextLine());
+        double total = 0;
+        total = ((numOne + numTwo * 1.0) / numThree) * numFor;
+        System.out.printf("%.0f",total);
+    }
+}
