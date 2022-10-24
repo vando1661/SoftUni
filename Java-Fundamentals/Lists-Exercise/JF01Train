@@ -1,0 +1,42 @@
+package listsExercise;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Collectors;
+
+public class JF01Train {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        List<Integer> numList = Arrays.stream(scanner.nextLine().split(" "))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+        int maxCapacityWagon = Integer.parseInt(scanner.nextLine());
+        int passengers = 0;
+        String input = scanner.nextLine();
+        while (!input.equals("end")) {
+            List<String> inputList = Arrays.stream(input.split(" ")).collect(Collectors.toList());
+            String command = inputList.get(0);
+            if (command.equals("Add")) {
+                int people = Integer.parseInt(inputList.get(1));
+                numList.add(people);
+            } else {
+                passengers = Integer.parseInt(inputList.get(0));
+                fitPassengers(numList,maxCapacityWagon,passengers);
+            }
+            input = scanner.nextLine();
+        }
+        System.out.println(numList.toString().replaceAll("[\\[\\],]", ""));
+    }
+    public static List<Integer> fitPassengers(List<Integer> numberList ,int maxCapacity,int passenger) {
+        for (int i = 0; i < numberList.size(); i++) {
+            int num = numberList.get(i);
+            if(passenger + num <= maxCapacity ){
+                //numList.set(i,numList.get(i)+ numList.get(i + 1));
+                numberList.set(i,numberList.get(i) + passenger);
+                break;
+            }
+        }
+        return numberList;
+    }
+}
