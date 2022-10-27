@@ -1,0 +1,27 @@
+package mapsLambdaAndStreamAPILab;
+
+import java.util.*;
+import java.util.stream.Collectors;
+
+public class JF01CountRealNumbers {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        List<Double> numbersList = Arrays.stream(scanner.nextLine().split("\\s+"))
+                               .map(Double::parseDouble)
+                               .collect(Collectors.toList());
+        Map<Double, Integer> countNumMap = new TreeMap<>();
+        for (double currentNum:numbersList) {
+            Integer currentValue = countNumMap.get(currentNum);
+            if(countNumMap.containsKey(currentNum)){
+                countNumMap.put(currentNum,currentValue + 1);
+            }else {
+                countNumMap.put(currentNum, 1);
+            }
+        }
+        for (Map.Entry<Double, Integer> entry : countNumMap.entrySet()) {
+            System.out.printf("%.0f -> %d%n",entry.getKey(),entry.getValue());
+        }
+
+
+    }
+}
