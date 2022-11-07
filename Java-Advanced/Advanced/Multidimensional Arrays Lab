@@ -1,0 +1,64 @@
+package _3MultidimensionalArraysLab;
+
+import java.util.Scanner;
+
+public class JA01CompareMatrices {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+
+        int rows = scanner.nextInt();
+        int cols = scanner.nextInt();
+
+        int[][] first = new int[rows][cols];
+
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < cols; col++) {
+                first[row][col] = scanner.nextInt();
+
+            }
+        }
+        rows = scanner.nextInt();
+        cols = scanner.nextInt();
+
+        int[][] second = new int[rows][cols];
+        for (int r = 0; r < second.length; r++) {
+            for (int c = 0; c < second[r].length; c++) {
+                second[r][c] = scanner.nextInt();
+            }
+        }
+        boolean areEqual = first.length == second.length
+         && areArraysAreEqual(first, second);
+
+        System.out.println(areEqual ? "equal" : "not equal");
+    }
+
+    private static boolean areArraysAreEqual(int[][] first, int[][] second) {
+        for (int r = 0; r < first.length; r++) {
+
+            int[] fistArr = first[r];
+            int[] secondArr = second[r];
+            if (fistArr.length != secondArr.length) {
+                return false;
+            }
+
+            for (int i = 0; i < fistArr.length; i++) {
+                int firstNum = fistArr[i];
+                int secondNum = secondArr[i];
+                if (firstNum != secondNum) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public static void printMatrix(int[][] matrix) {
+        for (int[] arr : matrix) {
+            for (int num : arr) {
+                System.out.print(num + " ");
+            }
+            System.out.println();
+        }
+    }
+}
