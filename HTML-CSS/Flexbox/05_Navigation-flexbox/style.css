@@ -1,0 +1,37 @@
+body {
+    padding: 50px;
+    
+}
+header {
+    display: flex;
+    border-bottom: 2px solid rgb(0,0,0);
+    align-items: center;
+    justify-content: space-between;
+   
+    
+}
+header p {
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 36px;
+    
+}
+ul {
+    display: flex;
+    list-style-type:none;
+    gap: 14px;
+    padding-right: 14px;
+    
+    
+}
+
+a {
+    text-decoration: none;
+    color: rgb(0, 153, 0);
+    
+}
+h1{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+}
+
