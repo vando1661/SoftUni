@@ -1,0 +1,29 @@
+body {
+    background-color: lightgrey;
+    margin: 100px 0px;
+}
+body,
+ul,
+li {
+    display: flex;
+    justify-content: center;
+ 
+ }
+ul {
+    list-style: none;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 30px;
+    
+}
+li {
+    background-color: white;
+    border: 10px solid black;
+    padding: 20px;
+    justify-content: center;
+    
+}
+img {
+    aspect-ratio: calc(10/16);
+    object-fit: contain;
+}
