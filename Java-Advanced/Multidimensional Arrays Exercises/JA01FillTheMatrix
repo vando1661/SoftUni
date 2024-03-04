@@ -1,0 +1,60 @@
+package _4MultidimensionalArraysExercises;
+
+import java.util.Scanner;
+
+public class JA01FillTheMatrix {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String[] input = scanner.nextLine().split(", ");
+        int sizeMatrix = Integer.parseInt(input[0]);
+        int rows = sizeMatrix;
+        int cols = sizeMatrix;
+        String patternCommand = input[1];
+        int[][] matrix = new int[rows][cols];
+        int counter = 1;
+        switch (patternCommand) {
+            case "A":
+                patternA(rows, cols, matrix, counter);
+                break;
+            case "B":
+                patternB(rows, cols, matrix, counter);
+                break;
+        }
+        printMatrix(matrix);
+
+    }
+
+    private static void patternB(int rows, int cols, int[][] matrix, int counter) {
+        for (int col = 0; col < cols; col++) {
+            if (col % 2 == 0) {
+                for (int row = 0; row < rows; row++) {
+                    matrix[row][col] = counter;
+                    counter++;
+                }
+            } else {
+                for (int row = rows - 1; row >= 0; row--) {
+                        matrix[row][col] = counter;
+                        counter++;
+                    }
+                }
+            }
+    }
+
+    private static void patternA(int rows, int cols, int[][] matrix, int counter) {
+        for (int col = 0; col < cols; col++) {
+            for (int row = 0; row < rows; row++) {
+                matrix[row][col] = counter;
+                counter++;
+            }
+        }
+    }
+
+    public static void printMatrix(int[][] matrix) {
+        for (int[] arr : matrix) {
+            for (int num : arr) {
+                System.out.print(num + " ");
+            }
+            System.out.println();
+        }
+    }
+}
