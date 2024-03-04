@@ -1,0 +1,66 @@
+function thePianist(input) {
+  let number = Number(input.shift());
+  let collection = {};
+  let commandParser = {
+    Add: addPiece,
+    Remove: removePiece,
+    ChangeKey: changeKey,
+  };
+  for (let index = 0; index < number; index++) {
+    let [piece, composer, key] = input.shift().split("|");
+    collection[piece] = { composer, key };
+  }
+  for (let inputLine of input) {
+    if (inputLine === "Stop") {
+      break;
+    }
+    let commandTokens = inputLine.split("|");
+    let command = commandTokens[0];
+    commandParser[command](...commandTokens.slice(1));
+  }
+  for (const piece in collection) {
+    const { key, composer } = collection[piece];
+    console.log(`${piece} -> Composer: ${composer}, Key: ${key}`);
+  }
+
+  function addPiece(piece, composer, key) {
+    if (collection.hasOwnProperty(piece)) {
+      console.log(`${piece} is already in the collection!`);
+    } else {
+      collection[piece] = { composer, key };
+      console.log(`${piece} by ${composer} in ${key} added to the collection!`);
+    }
+  }
+  function removePiece(piece) {
+    if (collection.hasOwnProperty(piece)) {
+      delete collection[piece];
+      console.log(`Successfully removed ${piece}!`);
+    } else {
+      console.log(
+        `Invalid operation! ${piece} does not exist in the collection.`
+      );
+    }
+  }
+  function changeKey(piece, newKey) {
+    if (collection.hasOwnProperty(piece)) {
+        collection[piece].key = newKey;
+      console.log(`Changed the key of ${piece} to ${newKey}!`);
+    } else {
+      console.log(
+        `Invalid operation! ${piece} does not exist in the collection.`
+      );
+    }
+  }
+}
+thePianist([
+  "3",
+  "Fur Elise|Beethoven|A Minor",
+  "Moonlight Sonata|Beethoven|C# Minor",
+  "Clair de Lune|Debussy|C# Minor",
+  "Add|Sonata No.2|Chopin|B Minor",
+  "Add|Hungarian Rhapsody No.2|Liszt|C# Minor",
+  "Add|Fur Elise|Beethoven|C# Minor",
+  "Remove|Clair de Lune",
+  "ChangeKey|Moonlight Sonata|C# Major",
+  "Stop",
+]);
